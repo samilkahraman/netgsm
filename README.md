@@ -4,9 +4,9 @@ New JavaScript library for NetGsm REST API, supports CommonJS (CJS).
 
 Requests are made with [Axios library](https://github.com/axios/axios) with [support to promises](https://github.com/axios/axios#promises).
 
-[![GitHub issues](https://img.shields.io/github/issues/samilkahraman/NetGsm)](https://github.com/samilkahraman/NetGsm/issues)
-[![GitHub license](https://img.shields.io/github/license/samilkahraman/NetGsm)](https://github.com/samilkahraman/NetGsm/blob/main/LICENSE)
-[![npm version](https://img.shields.io/npm/v/NetGsm.svg)](https://www.npmjs.com/package/NetGsm)
+[![GitHub issues](https://img.shields.io/github/issues/samilkahraman/netgsm)](https://github.com/samilkahraman/NetGsm/issues)
+[![GitHub license](https://img.shields.io/github/license/samilkahraman/netgsm)](https://github.com/samilkahraman/NetGsm/blob/main/LICENSE)
+[![npm version](https://img.shields.io/npm/v/netgsm.svg)](https://www.npmjs.com/package/netgsm)
 
 ## Installation
 
