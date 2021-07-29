@@ -20,8 +20,7 @@ function NetGsm(options) {
     throw new Error("Missing or invalid options");
   }
   this._setDefaultsOptions(options);
-
-  this.baseUrl = options.baseUrl;
+  console.log(options.usercode, options.password);
 }
 
 /**
@@ -32,7 +31,12 @@ function NetGsm(options) {
  * @return {Object}
  */
 NetGsm.prototype.get = function get(endpoint, params = {}) {
-  return this.request("get", endpoint, null, params);
+  return this.request("get", endpoint, null, {
+    usercode: this.usercode,
+    password: this.password,
+    msgheader: this.msgheader,
+    ...params,
+  });
 };
 
 /**
@@ -46,6 +50,9 @@ NetGsm.prototype.get = function get(endpoint, params = {}) {
  */
 NetGsm.prototype.post = function post(endpoint, data, params = {}) {
   return this.request("post", endpoint, data, {
+    usercode: this.usercode,
+    password: this.password,
+    msgheader: this.msgheader,
     ...params,
   });
 };
@@ -61,6 +68,9 @@ NetGsm.prototype.post = function post(endpoint, data, params = {}) {
  */
 NetGsm.prototype.put = function put(endpoint, data, params = {}) {
   return this.request("put", endpoint, data, {
+    usercode: this.usercode,
+    password: this.password,
+    msgheader: this.msgheader,
     ...params,
   });
 };
@@ -76,6 +86,9 @@ NetGsm.prototype.put = function put(endpoint, data, params = {}) {
  */
 NetGsm.prototype.delete = function remove(endpoint, params = {}) {
   return this.request("delete", endpoint, null, {
+    usercode: this.usercode,
+    password: this.password,
+    msgheader: this.msgheader,
     ...params,
   });
 };
@@ -90,7 +103,7 @@ NetGsm.prototype._setDefaultsOptions = function _setDefaultsOptions(opt) {
   this.isHttps = /^https/i.test(this.baseUrl);
   this.msgheader = opt.msgheader || "";
   this.encoding = opt.encoding || "utf8";
-  this.grant_type = opt.grant_type || "password";
+  //   this.grant_type = opt.grant_type || "password";
   this.usercode = opt.usercode || "";
   this.password = opt.password || "";
   this.queryStringAuth = opt.queryStringAuth || false;
@@ -99,8 +112,9 @@ NetGsm.prototype._setDefaultsOptions = function _setDefaultsOptions(opt) {
 };
 
 NetGsm.prototype._getUrl = function _getUrl(endpoint, params) {
+  console.log(endpoint, params);
   let url = this.baseUrl.slice(-1) === "/" ? this.baseUrl : this.baseUrl + "/";
-  url = url + "api/" + endpoint;
+  url = url + endpoint;
 
   return this._normalizeQueryString(url, params);
 };
